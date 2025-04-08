@@ -1,0 +1,61 @@
+%mass steel
+m_bsteel = 1396/1000; 
+
+%mass styrofoam
+m_bstyrofoam = 1;
+
+%radius/diameter steel
+Db_steel = 1;
+Rb_steel = 3.5*10^-3;
+
+%radius diameter styrofoam
+Db_styrofoam 1;
+Rb_styrofoam = 1;
+
+%mass of rod
+m_r = 77.7/1000; 
+
+
+%length of rod
+l_r = 57*10^-3; 
+
+
+%screw depth
+s = 1*10^-3;
+
+
+%CAD DATA
+m_m = 0.4;
+J_m = 3.4602*10^-5;
+
+
+
+%calculated steel
+m_total_steel = m_bsteel + m_m + m_r;
+l_math_steel = l_r - s + Rb_steel;
+l_phy_steel = (l_r/2)*m_r + l_math_steel*m_bsteel;
+Angle_1_steel = deg2rad(14.65);
+Angle_2_steel = deg2rad(44.35);
+g = 9.81;
+
+%Steel Dampening ESTIMATION EXP1
+%physical pendulum steel
+d_phy_steel = (m_total_steel*g*l_phy_steel*(cos(Angle_2)-cos(Angle_1)))/Integral;
+
+%mathematical pendulum steel
+d_math_steel = (m_bsteel*g*l_math_steel*(cos(Angle_2)-cos(Angle_1)))/Integral;
+
+%calculated styrofoam
+m_total_styrofoam = m_bstyrofoam + m_m + m_r;
+l_math_styrofoam = l_r - s + Rb_styrofoam;
+l_phy_styrofoam= (l_r/2)*m_r + l_math_styrofoam*m_bstyrofoam;
+Angle_1_styrofoam = deg2rad(1.55);
+Angle_2_styrofoam = deg2rad(41.825);
+g = 9.81;
+
+%Styrofoam Dampening ESTIMATION EXP1
+%physical pendulum styrofoam
+d_phy_styrofoam = (m_total_styrofoam*g*l_phy_styrofoam*(cos(Angle_2)-cos(Angle_1)))/Integral;
+
+%mathematical pendulum styrofoam
+d_math_styrofoam = (m_bstyrofoam*g*l_math_styrofoam*(cos(Angle_2)-cos(Angle_1)))/Integral;
